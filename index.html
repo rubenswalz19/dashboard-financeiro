@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1016">
+  <meta name="description" content="Acompanhe seus indicadores financeiros e simule investimentos com o FinPulse Analytics.">
+  <title>FinPulse Analytics — Dashboard financeiro</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="auth-screen" id="auth-screen">
+    <aside class="auth-story">
+      <a class="brand auth-brand" href="#auth-screen" aria-label="FinPulse Analytics">
+        <span class="brand-symbol" aria-hidden="true">↗</span>
+        <span><strong>FinPulse</strong><small>ANALYTICS</small></span>
+      </a>
+      <div class="auth-story-copy">
+        <p class="eyebrow"><span class="live-dot"></span> FINANÇAS COM MAIS CLAREZA</p>
+        <h1>Seu próximo passo começa com <span>uma boa visão.</span></h1>
+        <p>Acompanhe o mercado, planeje seus investimentos e organize suas finanças em um só lugar.</p>
+      </div>
+      <p class="auth-story-footer">Seu dinheiro, <strong>em movimento.</strong></p>
+    </aside>
+
+    <section class="auth-panel" aria-labelledby="auth-title">
+      <div class="auth-card">
+        <p class="section-kicker">BEM-VINDO AO FINPULSE</p>
+        <h2 id="auth-title">Acesse sua conta</h2>
+        <p class="auth-intro" id="auth-intro">Entre para acompanhar seu painel financeiro.</p>
+        <div class="auth-tabs" role="tablist" aria-label="Acesso à conta">
+          <button class="auth-tab active" id="auth-login-tab" type="button" role="tab" aria-selected="true" aria-controls="login-form">Entrar</button>
+          <button class="auth-tab" id="auth-register-tab" type="button" role="tab" aria-selected="false" aria-controls="register-form">Criar conta</button>
+        </div>
+        <p class="auth-feedback" id="auth-feedback" role="status" aria-live="polite" hidden></p>
+        <form class="auth-form" id="login-form" role="tabpanel" aria-labelledby="auth-login-tab">
+          <label class="field"><span>E-mail</span><input name="email" type="email" autocomplete="username" placeholder="voce@email.com" required></label>
+          <label class="field"><span>Senha</span><input name="password" type="password" autocomplete="current-password" placeholder="Sua senha" required></label>
+          <button class="primary-button auth-submit" type="submit">Entrar na conta <span aria-hidden="true">↗</span></button>
+        </form>
+
+        <form class="auth-form" id="register-form" role="tabpanel" aria-labelledby="auth-register-tab" hidden>
+          <label class="field"><span>Nome completo</span><input name="name" type="text" autocomplete="name" maxlength="80" placeholder="Como podemos te chamar?" required></label>
+          <label class="field"><span>E-mail</span><input name="email" type="email" autocomplete="email" placeholder="voce@email.com" required></label>
+          <label class="field"><span>Senha</span><input name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Mínimo de 8 caracteres" required></label>
+          <label class="field"><span>Confirmar senha</span><input name="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Digite a senha novamente" required></label>
+          <button class="primary-button auth-submit" type="submit">Criar minha conta <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="auth-footnote" id="auth-footnote"></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="app-shell" id="app-shell" hidden>
+    <!-- A navegação lateral dá contexto no desktop e vira um menu compacto em telas menores. -->
+    <aside class="sidebar" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="FinPulse Analytics, início">
+        <span class="brand-symbol" aria-hidden="true">↗</span>
+        <span><strong>FinPulse</strong><small>ANALYTICS</small></span>
+      </a>
+      <p class="nav-caption">WORKSPACE</p>
+      <nav class="main-nav">
+        <a class="nav-link active" href="#inicio" aria-current="page"><span aria-hidden="true">▦</span> Visão geral</a>
+        <a class="nav-link" href="#simulador"><span aria-hidden="true">▥</span> Investimentos</a>
+        <a class="nav-link" href="#transacoes"><span aria-hidden="true">⇄</span> Transações</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <p class="sidebar-note">Seu dinheiro, <strong>em movimento.</strong></p>
+        <div class="profile"><span class="avatar" id="profile-avatar" aria-hidden="true">F</span><span><strong id="profile-name">Conta FinPulse</strong><small id="profile-email"></small></span></div>
+        <button class="sidebar-logout-button" id="sidebar-logout-button" type="button">
+          <span aria-hidden="true">↪</span>
+          <span>Sair / Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- O conteúdo principal é dividido em áreas independentes para facilitar a leitura e navegação. -->
+    <main class="main-content" id="inicio">
+      <header class="topbar">
+        <p class="breadcrumb">Workspace <span>/</span> <strong>Visão geral</strong></p>
+        <div class="topbar-actions">
+          <time id="today-date"></time>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar para tema claro">
+            <span class="theme-icon" aria-hidden="true">☼</span><span id="theme-label">Tema claro</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard">
+        <section class="welcome-row" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow"><span class="live-dot"></span> SEU PAINEL FINANCEIRO</p>
+            <h1 id="page-title">FinPulse <span>Analytics</span></h1>
+            <p class="welcome-copy">Uma visão clara para decisões mais inteligentes.</p>
+          </div>
+          <a class="quick-link" href="#simulador">Simular investimento <span aria-hidden="true">↗</span></a>
+        </section>
+
+        <!-- Skeletons preservam o espaço dos indicadores enquanto a API pública responde. -->
+        <section class="market-section" aria-labelledby="market-title">
+          <div class="section-heading">
+            <div><p class="section-kicker">MERCADO AGORA</p><h2 id="market-title">Cotações em tempo real</h2></div>
+            <span class="updated-label"><span class="live-dot"></span><span id="market-updated">Conectando ao mercado</span></span>
+          </div>
+          <div class="market-grid" id="market-grid" aria-live="polite">
+            <article class="market-card skeleton-card" aria-label="Carregando cotação do dólar">
+              <span class="skeleton skeleton-title"></span><span class="skeleton skeleton-price"></span><span class="skeleton skeleton-change"></span>
+            </article>
+            <article class="market-card skeleton-card" aria-label="Carregando cotação do euro">
+              <span class="skeleton skeleton-title"></span><span class="skeleton skeleton-price"></span><span class="skeleton skeleton-change"></span>
+            </article>
+            <article class="market-card skeleton-card" aria-label="Carregando cotação do bitcoin">
+              <span class="skeleton skeleton-title"></span><span class="skeleton skeleton-price"></span><span class="skeleton skeleton-change"></span>
+            </article>
+          </div>
+        </section>
+
+        <!-- O formulário controla três projeções com juros compostos, exibidas sem dependências gráficas. -->
+        <section class="panel simulator" id="simulador" aria-labelledby="simulator-title">
+          <div class="section-heading">
+            <div><p class="section-kicker">PLANEJE SEU FUTURO</p><h2 id="simulator-title">Simulador de investimentos</h2><p class="section-copy">Compare como seus aportes podem crescer em diferentes cenários.</p></div>
+            <span class="section-badge" aria-hidden="true">▥</span>
+          </div>
+          <form class="simulator-form" id="simulator-form">
+            <label class="field"><span>Aporte inicial</span><span class="input-shell"><span>R$</span><input name="initial" type="number" min="0" step="100" value="5000" inputmode="decimal" required></span></label>
+            <label class="field"><span>Aporte mensal</span><span class="input-shell"><span>R$</span><input name="monthly" type="number" min="0" step="50" value="500" inputmode="decimal" required></span></label>
+            <label class="field"><span>Prazo</span><span class="input-shell"><input name="months" type="number" min="1" max="600" step="1" value="24" inputmode="numeric" required><span>meses</span></span></label>
+            <button class="primary-button" type="submit">Calcular cenário <span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="chart-heading"><h3>Projeção de patrimônio</h3><span id="chart-period">Em 24 meses</span></div>
+          <div class="chart-area" id="investment-chart" role="img" aria-label="Gráfico de barras comparando os cenários de investimento"></div>
+          <div class="chart-legend">
+            <span><i class="legend-dot conservative"></i>Conservador <small>0,7% a.m.</small></span>
+            <span><i class="legend-dot balanced"></i>Equilibrado <small>1,0% a.m.</small></span>
+            <span><i class="legend-dot bold"></i>Arrojado <small>1,3% a.m.</small></span>
+          </div>
+          <p class="disclaimer">Simulação ilustrativa, sem considerar impostos ou taxas. Rentabilidade passada não representa garantia de retorno.</p>
+        </section>
+
+        <!-- Os registros são criados como nós de texto para manter os dados do usuário seguros na interface. -->
+        <section class="panel transactions" id="transacoes" aria-labelledby="transactions-title">
+          <div class="transactions-heading">
+            <div><p class="section-kicker">ACOMPANHAMENTO</p><h2 id="transactions-title">Transações recentes</h2></div>
+            <div class="transactions-actions">
+              <button class="secondary-button delete-button" id="delete-all-transactions" type="button">Excluir todas</button>
+              <button class="secondary-button" id="toggle-transaction-form" type="button" aria-expanded="false" aria-controls="transaction-form"><span aria-hidden="true">＋</span> Nova transação</button>
+            </div>
+          </div>
+          <form class="transaction-form" id="transaction-form" hidden>
+            <label class="field"><span>Descrição</span><input name="description" type="text" maxlength="60" placeholder="Ex.: Freelance, mercado..." required></label>
+            <label class="field"><span>Valor</span><span class="input-shell"><span>R$</span><input name="amount" type="number" min="0.01" step="0.01" placeholder="0,00" inputmode="decimal" required></span></label>
+            <label class="field"><span>Categoria</span><select name="type" required><option value="entrada">Entrada</option><option value="saida">Saída</option></select></label>
+            <label class="field"><span>Data</span><input name="date" type="date" required></label>
+            <button class="primary-button" type="submit">Adicionar</button>
+          </form>
+          <p class="feedback" id="transaction-feedback" role="status" hidden></p>
+          <div class="table-toolbar">
+            <label class="search-box"><span aria-hidden="true">⌕</span><span class="visually-hidden">Buscar transações</span><input id="transaction-search" type="search" placeholder="Buscar transação..." autocomplete="off"></label>
+            <label class="filter-box"><span class="visually-hidden">Filtrar por categoria</span><select id="category-filter"><option value="todas">Todas as categorias</option><option value="entrada">Entradas</option><option value="saida">Saídas</option></select></label>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th scope="col">Transação</th><th scope="col">Categoria</th><th scope="col">Data</th><th scope="col" class="amount-heading">Valor</th></tr></thead>
+              <tbody id="transaction-list"></tbody>
+            </table>
+            <p class="empty-state" id="empty-transactions" hidden>Nenhuma transação encontrada. Altere os filtros ou adicione uma transação.</p>
+          </div>
+          <div class="table-footer"><span id="transaction-count"></span><span><span id="transaction-storage-label">Dados salvos neste dispositivo</span> <i aria-hidden="true">●</i></span></div>
+        </section>
+        <footer class="page-footer"><span>© <span id="current-year"></span> FinPulse Analytics</span><span>Feito para decisões melhores <i aria-hidden="true">✦</i></span></footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
