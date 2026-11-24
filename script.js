@@ -636,7 +636,13 @@ transactionForm.addEventListener("submit", async (event) => {
   const amount = Number(data.get("amount"));
   const type = String(data.get("type"));
   const date = String(data.get("date"));
-  if (!description || !Number.isFinite(amount) || amount <= 0 || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+  if (
+    !description ||
+    !Number.isFinite(amount) ||
+    amount <= 0 ||
+    (type !== "entrada" && type !== "saida") ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(date)
+  ) {
     showFeedback("Confira a descrição, o valor e a data informados.", true);
     return;
   }
@@ -656,6 +662,8 @@ transactionForm.addEventListener("submit", async (event) => {
   transactionForm.reset();
   transactionForm.hidden = true;
   $("#toggle-transaction-form").setAttribute("aria-expanded", "false");
+  searchInput.value = "";
+  categoryFilter.value = type;
   showFeedback("Transação adicionada com sucesso.");
   renderTransactions();
 });
@@ -754,10 +762,6 @@ function renderInvestmentChart(showValidation = false) {
   }
 }
 
-$("#simulator-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-  renderInvestmentChart(true);
-});
 $("#simulator-form").addEventListener("input", (event) => {
   if (event.target.matches("input")) renderInvestmentChart();
 });
